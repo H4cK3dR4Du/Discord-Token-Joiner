@@ -134,6 +134,7 @@ def join(token):
         print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({lightblue}~{gray}) {pink}Got Fingerprint {gray}| {green}{fingerprint}")
     else:
         errors += 1
+        update_console_title()
 
     headers = {
         "authorization": token,
@@ -161,6 +162,7 @@ def join(token):
             time_rn = get_time_rn()
             print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({green}+{gray}) {pretty}Token Joined Successfully {gray}|{cyan} {token[:50]}*****")
             joined += 1
+            update_console_title()
             b = newresponse.json()
             server_id = b["guild"]["id"]
             if 'show_verification_form' in b:
@@ -170,14 +172,17 @@ def join(token):
                     time_rn = get_time_rn()
                     print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({green}+{gray}) {pretty}Token Accepted Rules {gray}|{cyan} {token[:50]}*****")
                     rules += 1
+                    update_console_title()
                 else:
                     time_rn = get_time_rn()
                     print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({red}-{gray}) {pretty}Token Failed Accepting Rules {gray}| {cyan}{token[:50]}*****")
                     errors += 1
+                    update_console_title()
     elif response.status_code == 200:
         time_rn = get_time_rn()
         print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({green}+{gray}) {pretty}Token Joined Successfully {gray}|{cyan} {token[:50]}*****")
         joined += 1
+        update_console_title()
         b = response.json()
         server_id = b["guild"]["id"]
         if 'show_verification_form' in b:
@@ -187,14 +192,17 @@ def join(token):
                 time_rn = get_time_rn()
                 print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({green}+{gray}) {pretty}Token Accepted Rules {gray}|{cyan} {token[:50]}*****")
                 rules += 1
+                update_console_title()
             else:
                 time_rn = get_time_rn()
                 print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({red}-{gray}) {pretty}Token Failed Accepting Rules {gray}| {cyan}{token[:50]}*****")
                 errors += 1
+                update_console_title()
     else:
         time_rn = get_time_rn()
         print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({red}-{gray}) {pretty}Token Failed To Join {gray}| {cyan}{token[:50]}*****")
         errors += 1
+        update_console_title()
 
 def main():
     with open('tokens.txt', 'r') as file:
